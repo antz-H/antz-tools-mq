@@ -1,0 +1,54 @@
+server:
+  port: 7002
+spring:
+  rabbitmq:
+    host: 118.25.35.116
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 60000 #毫秒
+    publisher-confirms: true #支持发布确认
+    publisher-returns: true #支持发布返回
+    cache:
+      channel:
+        size: 1
+    listener:
+      simple:
+        prefetch: 1   #每次处理请求,主要是限流作用
+        concurrency: 2
+        max-concurrency: 5
+        acknowledge-mode: manual #auto:自动ack manual:手工补偿ack
+        default-requeue-rejected: false  #异常情况下，消息是否还放入队列中，
+                                           #同时为true时，consumer会不断消费这个消息
+      log:
+        queue:
+          name: logmessage
+          durable: true
+        exchange:
+          name: control.exchange
+          durable: true
+          type: topic
+          ignoreDeclarationExceptions: true
+        key: log.key
+      order:
+        queue:
+          name: order
+          durable: true
+        exchange:
+          name: order.exchange
+          durable: true
+          type: fanout
+          ignoreDeclarationExceptions: true
+        key: order.key
+      directmessage:
+        queue:
+          name: directmessage
+          durable: true
+        exchange:
+          name: direct.exchange
+          durable: true
+          type: direct
+          ignoreDeclarationExceptions: true
+        #key: direct.key   #direct exchange 默认可不配置routing key，若不配则默认采用队列的名称
+
