@@ -1,5 +1,6 @@
 package com.antz.cloud.rabbitmq.util;
 
+import com.antz.cloud.rabbitmq.bean.Log;
 import com.antz.cloud.rabbitmq.demo.log.LogConstants;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,8 +33,11 @@ public class LogSenderTest {
     @Test
     public void logTest2() throws Exception {
         for(int i = 0 ;i <10 ; i++){
-            String value = "这是一条测试信息"+i ;
-            defaultProducerEventTemplate.send( LogConstants.QUEUE_NAME,LogConstants.EXCHANGE_NAME,value);
+            Log log = new Log();
+            String message = "这是一条测试日志"+i;
+            log.setName(message);
+            log.setMessageid(String.valueOf(i));
+            defaultProducerEventTemplate.send( LogConstants.QUEUE_NAME,LogConstants.EXCHANGE_NAME,log);
         }
 
     }

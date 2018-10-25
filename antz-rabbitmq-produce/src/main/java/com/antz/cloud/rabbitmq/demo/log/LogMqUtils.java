@@ -3,6 +3,7 @@ package com.antz.cloud.rabbitmq.demo.log;
 import com.antz.cloud.rabbitmq.exchange.TopicDelaySupportExchange;
 import com.antz.cloud.rabbitmq.util.CodecFactory;
 import com.antz.cloud.rabbitmq.util.DefaultCodecFactory;
+import com.antz.cloud.rabbitmq.util.DefaultFastJsonCodeFactory;
 import com.antz.cloud.rabbitmq.util.MqQueueUtil;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -52,7 +53,7 @@ public class LogMqUtils {
 
     @Bean
     public CodecFactory defineDefaultCodecFactory(){
-        CodecFactory codecFactory = new DefaultCodecFactory();
+        CodecFactory codecFactory = new DefaultFastJsonCodeFactory();
         return codecFactory ;
     }
 
