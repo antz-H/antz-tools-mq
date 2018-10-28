@@ -42,4 +42,14 @@ public class LogSenderTest {
 
     }
 
+    @Test
+    public void logTest3() throws Exception {
+        for(int i = 0 ;i <10 ; i++){
+            Log log = new Log();
+            String message = "这是一条测试日志"+i;
+            defaultProducerEventTemplate.send( LogConstants.QUEUE_NAME,LogConstants.EXCHANGE_NAME,message);
+        }
+
+    }
+
 }

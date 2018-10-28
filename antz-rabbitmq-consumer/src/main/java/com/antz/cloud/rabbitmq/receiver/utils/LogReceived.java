@@ -41,17 +41,24 @@ public class LogReceived {
         log.info("消息队列process，{}，接收到消息，{}","log.queue",message.toString());
     }
 */
-    @RabbitHandler
+   /* @RabbitHandler
     public void process_comsumer1(byte[] message , Channel channel ,@Headers Map<String,Object> headers) throws IOException, InterruptedException {
         channel.basicAck((long)(headers.get(AmqpHeaders.DELIVERY_TAG)),false);
         Log logs = MessageHandlerUtil.handlerMessage(message,new DefaultFastJsonCodeFactory(),Log.class) ;
         log.info("消费者process_comsumer1——消息队列，{}，接收到消息，{}","log.queue",logs.toString());
-    }
+    }*/
    /* @RabbitHandler
     public void process_Object(Object message , Channel channel ,@Headers Map<String,Object> headers) throws IOException, InterruptedException {
         channel.basicAck((long)(headers.get(AmqpHeaders.DELIVERY_TAG)),false);
         Log logs = MessageHandlerUtil.handlerMessage(message,new DefaultFastJsonCodeFactory(),Log.class) ;
         log.info("消费者1——消息队列，{}，接收到消息，{}","log.queue",logs.toString());
     }*/
+
+    @RabbitHandler
+    public void process_String(byte[] message , Channel channel ,@Headers Map<String,Object> headers) throws IOException, InterruptedException {
+        channel.basicAck((long)(headers.get(AmqpHeaders.DELIVERY_TAG)),false);
+        String str = MessageHandlerUtil.handlerMessage(message,new DefaultFastJsonCodeFactory(),String.class) ;
+        log.info("消费者process_comsumer1——消息队列，{}，接收到消息，{}","log.queue",str.toString());
+    }
 
 }
