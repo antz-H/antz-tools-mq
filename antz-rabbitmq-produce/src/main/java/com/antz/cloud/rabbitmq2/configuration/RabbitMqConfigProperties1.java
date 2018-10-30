@@ -1,28 +1,30 @@
-package com.antz.cloud.rabbitmq.configuration;
+package com.antz.cloud.rabbitmq2.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 /**
- * @program: swhysc-service-plugin
+ * @program: antz-cloud-mq
  * @description:
  * @author: huanghuang@rewin.com.cn
- * @Create: 2018-09-14 15:08
+ * @Create: 2018-10-28 21:45
  **/
 @Data
-//@Component
-@ConfigurationProperties(prefix = "spring.rabbitmq")
-public class RabbitMqConfigProperties {
+@Configuration
+@ConfigurationProperties(prefix = "demeter.rabbitmq")
+public class RabbitMqConfigProperties1 {
 
-    private String host;
-    private String port;
+    private List<String> hostandports;
     private String username;
     private String password;
     private String virtualHost;
     private int connectionTimeout;
+    private int threads ;
+
     private boolean publisherConfirms;
     private boolean publisherReturns;
-
 
 }

@@ -1,8 +1,7 @@
-package com.antz.cloud.rabbitmq.configuration;
+package com.antz.cloud.rabbitmq2.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * @program: swhysc-service-plugin

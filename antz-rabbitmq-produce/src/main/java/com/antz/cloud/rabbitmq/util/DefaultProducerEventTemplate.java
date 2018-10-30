@@ -22,7 +22,7 @@ import java.util.UUID;
  * @author: huanghuang@rewin.com.cn
  * @Create: 2018-10-08 13:50
  **/
-@Component
+//@Component
 @Slf4j
 public class DefaultProducerEventTemplate implements ProducerEventTemplate {
 

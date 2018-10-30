@@ -20,10 +20,11 @@ import java.util.Map;
  **/
 @Slf4j
 //@Component
-//@RabbitListener(queues = "log.queue")
+@RabbitListener(queues = "log.queue")
 public class LogReceived2 {
     @RabbitHandler
     public void process_comsumer2(byte[] message , Channel channel ,@Headers Map<String,Object> headers) throws IOException {
+        //todo
         channel.basicAck((long)(headers.get(AmqpHeaders.DELIVERY_TAG)),false);
         log.info("消费者2——消息队列，{}，接收到消息，{}","log.queue",ObjectAndByte.ByteToObject(message).toString());
     }

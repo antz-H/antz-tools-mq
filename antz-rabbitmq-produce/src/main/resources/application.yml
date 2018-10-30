@@ -17,3 +17,14 @@ logging:
   level:
     root: debug
 
+
+
+demeter:
+  rabbitmq:
+    hostandports: 118.25.35.116:5672
+    username: guest
+    password: guest
+    virtualHost: /
+    connectionTimeout: 30000
+    threads: 5
+

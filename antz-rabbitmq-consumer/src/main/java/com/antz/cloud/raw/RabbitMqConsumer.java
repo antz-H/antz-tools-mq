@@ -38,12 +38,13 @@ public class RabbitMqConsumer {
 
                           int i = new Random().nextInt(10);
                             System.out.println("计算出的随机数:"+ i+"=====DeliveryTag="+envelope.getDeliveryTag());
-                          if("hello world5".equals(new String(body))){
+                         /* if("hello world5".equals(new String(body))){
                               System.out.println("拒绝");
                               channel.basicNack(envelope.getDeliveryTag(),true,true);
-                          }/*else{
+                          }else{*/
                               channel.basicAck(envelope.getDeliveryTag(),false);
-                          }*/
+                         // }
+
                 }
             };
             channel.basicConsume(QUEUE_NAME,consumer);
